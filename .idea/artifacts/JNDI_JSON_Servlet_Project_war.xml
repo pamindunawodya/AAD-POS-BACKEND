@@ -1,0 +1,16 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="JNDI-JSON-Servlet-Project:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <exploded>false</exploded>
+        <module>JNDI-JSON-Servlet-Project</module>
+        <packaging>war</packaging>
+        <unpackNestedArchives>false</unpackNestedArchives>
+      </options>
+    </properties>
+    <root id="archive" name="JNDI-JSON-Servlet-Project-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="JNDI-JSON-Servlet-Project:war exploded" />
+    </root>
+  </artifact>
+</component>
