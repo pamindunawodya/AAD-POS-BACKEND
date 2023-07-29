@@ -20,8 +20,6 @@ import java.sql.*;
 public class CustomerHandle extends HttpServlet {
 
     Connection connection;
-    private static final String saveCustomer="INSERT INTO customer(id,name,address,salary) VALUES (?,?,?,?)";
-
 
     @Override
     public void init() throws ServletException {

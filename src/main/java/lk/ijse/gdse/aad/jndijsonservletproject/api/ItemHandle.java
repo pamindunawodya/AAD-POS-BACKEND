@@ -2,8 +2,6 @@ package lk.ijse.gdse.aad.jndijsonservletproject.api;
 
 import jakarta.json.bind.Jsonb;
 import jakarta.json.bind.JsonbBuilder;
-
-import lk.ijse.gdse.aad.jndijsonservletproject.dto.CustomerDTO;
 import lk.ijse.gdse.aad.jndijsonservletproject.dto.ItemDTO;
 
 import javax.naming.InitialContext;
