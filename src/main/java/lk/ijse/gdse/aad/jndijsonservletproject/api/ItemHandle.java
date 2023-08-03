@@ -2,6 +2,7 @@ package lk.ijse.gdse.aad.jndijsonservletproject.api;
 
 import jakarta.json.bind.Jsonb;
 import jakarta.json.bind.JsonbBuilder;
+import lk.ijse.gdse.aad.jndijsonservletproject.dto.CustomerDTO;
 import lk.ijse.gdse.aad.jndijsonservletproject.dto.ItemDTO;
 
 import javax.naming.InitialContext;
@@ -15,6 +16,7 @@ import javax.sql.DataSource;
 import java.io.IOException;
 import java.rmi.RemoteException;
 import java.sql.*;
+import java.util.ArrayList;
 
 @WebServlet(urlPatterns ="/ItemHandle" )
 
@@ -163,6 +165,43 @@ public class ItemHandle extends HttpServlet {
         }
         //Todo:Exception Handle
     }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        try {
+            ArrayList<ItemDTO> allItem = new ArrayList<>();
+            PreparedStatement ps =
+                    connection.prepareStatement("SELECT*FROM item");
+            ResultSet rst = ps.executeQuery();
+            while (rst.next()) {
+                String code = rst.getString("code");
+                String description = rst.getString("description");
+                int qty = rst.getInt("qty");
+                double price = rst.getDouble("price");
+                allItem.add(new ItemDTO(code, description, qty, price));
+            }
+
+            //JSON Format
+            String itemJson = "[";
+            for (ItemDTO item : allItem) {
+                String code = item.getCode();
+                String description = item.getDescription();
+                int qty = item.getQty();
+                Double price = item.getPrice();
+
+                //json obj
+                String itemOb = "{\"code\":\" "+ code + "\",\"description\":\"" + description + "\",\"qty\":\"" + qty + "\",\"price\":" + price + "},";
+                itemJson += itemOb;
+            }
+            String substring = itemJson.substring(0, itemJson.length() - 1);
+            substring+="]";
+            resp.getWriter().write(substring);
+
+
+        } catch ( SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
+}
 
 

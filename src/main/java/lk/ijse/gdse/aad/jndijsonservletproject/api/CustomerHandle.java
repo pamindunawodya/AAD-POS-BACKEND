@@ -1,5 +1,8 @@
 package lk.ijse.gdse.aad.jndijsonservletproject.api;
 
+import jakarta.json.Json;
+import jakarta.json.JsonArrayBuilder;
+import jakarta.json.JsonObjectBuilder;
 import jakarta.json.bind.Jsonb;
 import jakarta.json.bind.JsonbBuilder;
 import lk.ijse.gdse.aad.jndijsonservletproject.dto.CustomerDTO;
@@ -180,6 +183,7 @@ public class CustomerHandle extends HttpServlet {
         if (req.getContentType() == null || !req.getContentType().toLowerCase().startsWith("application/json")) {
             resp.sendError(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
         }
+
         try {
             ArrayList<CustomerDTO> allCustomer = new ArrayList<>();
             PreparedStatement ps =
